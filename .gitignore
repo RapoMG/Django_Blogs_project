@@ -1,0 +1,26 @@
+# python
+__pycache__/
+*.pyc
+
+# environment
+.env
+venv/
+.env.*
+
+# Local db
+db.sqlite3
+
+# local files
+media/
+staticfiles/
+temp/
+
+# Training files
+skrypt.py
+.settings.py
+.local_ToDo.txt
+
+.coverage
+
+# Allowed examples
+!.env.example
