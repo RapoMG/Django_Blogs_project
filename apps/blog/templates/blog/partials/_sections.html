@@ -1,0 +1,10 @@
+﻿<ul>
+  {% for section in sections %}
+     <li><a href="{% url 'blog:category-posts' section.id %}">{{ section.name }}</a></li>
+  {% empty %}
+    <li><a href="#">Tu</a></li>
+    <li><a href="#">pojawią</a></li>
+    <li><a href="#">się</a></li>
+    <li><a href="#">kategorie</a></li>
+  {% endfor %}
+</ul>

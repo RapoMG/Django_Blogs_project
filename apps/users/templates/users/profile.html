@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Profil{% endblock %}
+
+{% block content %}
+<section class="panel panel--wide" aria-labelledby="profile-title">
+  <h2 id="profile-title">Profil: {{ profile_user.username }}</h2>
+
+  {% if profile_user.profile.avatar %}
+    <p><img src="{{ profile_user.profile.avatar.url }}" alt="Avatar" style="max-width: 160px; height: auto;"></p>
+  {% endif %}
+
+  <p><strong>Email:</strong>
+    {% if profile_user.profile.is_email_visible or request.user == profile_user %}
+      {{ profile_user.email }}
+    {% else %}
+      ukryty
+    {% endif %}
+  </p>
+
+  {% if profile_user.profile.description %}
+    <p>{{ profile_user.profile.description }}</p>
+  {% endif %}
+
+  {% if request.user == profile_user %}
+    <p><a href="{% url 'users:profile_edit' %}">Edytuj profil</a></p>
+  {% endif %}
+</section>
+{% endblock %}

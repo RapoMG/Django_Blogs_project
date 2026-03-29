@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}Blog{% endblock %}</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    .post { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
+    .meta { color: #666; font-size: .9rem; }
+    a { text-decoration: none; color: #0b57d0; }
+  </style>
+</head>
+<body>
+  <h1><a href="{% url 'blog:last-post' %}">Blog</a></h1>
+  {% block content %}{% endblock %}
+</body>
+</html>

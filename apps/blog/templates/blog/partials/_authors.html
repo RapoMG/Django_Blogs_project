@@ -1,0 +1,17 @@
+<section class="panel" aria-labelledby="authors-title">
+  <h2 id="authors-title">Autorzy bloga</h2>
+  <ul class="items-list">
+    {% for author in authors %}
+      <li>
+        <h3>{{ author.name }}</h3>
+        <p>{{ author.bio|default:"Autor bloga" }}</p>
+      </li>
+    {% empty %}
+      <li>
+        <h3>Przykladowy autor</h3>
+        <p>Tu będzie lista autorów i krótkie opisy.</p>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+

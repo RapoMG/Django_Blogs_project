@@ -1,0 +1,16 @@
+﻿<section class="panel  panel--wide" aria-labelledby="new-posts-title">
+  <h2 id="new-posts-title">Nowe posty</h2>
+  <ul class="items-list">
+    {% for post in new_posts %}
+      <li>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content|truncatechars:140 }}</p>
+      </li>
+    {% empty %}
+      <li>
+        <h3>Brak nowych postow</h3>
+        <p>Tu pojawią się najnowsze wpisy z bloga.</p>
+      </li>
+    {% endfor %}
+  </ul>
+</section>

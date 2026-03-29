@@ -1,0 +1,17 @@
+<section class="panel" aria-labelledby="announcements-title">
+  <h2 id="announcements-title">Ogloszenia uzytkownikow</h2>
+  <ul class="items-list">
+    {% for announcement in announcements %}
+      <li>
+        <h3>{{ announcement.title }}</h3>
+        <p>{{ announcement.content|truncatechars:180 }}</p>
+      </li>
+    {% empty %}
+      <li>
+        <h3>Brak ogloszen</h3>
+        <p>W tym miejscu pojawią się najnowsze ogłoszenia z aplikacji ogłoszenia.</p>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+

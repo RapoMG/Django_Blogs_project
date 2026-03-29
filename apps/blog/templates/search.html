@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Wyniki wyszukiwania{% endblock %}
+
+{% block content %}
+    <section class="panel" aria-labelledby="new-posts-title">
+    <h2 id="new-posts-title">Wyniki wyszukiwania</h2>
+    <ul class="items-list">
+
+        {% for post in posts %}
+            <li>
+                <article class="post">
+                    <h3>{{ post.title }}</h3>
+                    <p class="meta">
+                        Autor: {{ post.author|default:"Brak" }} |
+                        Data: {{ post.publication_date|date:"Y-m-d H:i" }}
+                    </p>
+                    <p>{{ post.content|truncatechars:140 }}</p>
+                </article>
+            </li>
+        {% empty %}
+            <li>
+                <p>NIe znaleziono wyników z szukaną frazą.</p>
+            </li>
+        {% endfor %}
+    </ul>
+    </section>
+{% endblock %}
+

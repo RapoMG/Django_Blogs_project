@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Rejestracja{% endblock %}
+
+{% block content %}
+<section class="panel panel--wide" aria-labelledby="register-title">
+  <h2 id="register-title">Rejestracja uzytkownika</h2>
+
+  <form method="post">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <div class="panel">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+
+    {{ form.as_p }}
+
+    <button type="submit">Dolacz</button>
+  </form>
+</section>
+{% endblock %}

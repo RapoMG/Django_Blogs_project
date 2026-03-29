@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Ostatnie posty{% endblock %}
+
+{% block content %}
+  <h2>5 najnowszych postów</h2>
+
+  {% for post in posts %}
+    <article class="post">
+      <h3>{{ post.title }}</h3>
+      <p class="meta">
+        Autor: {{ post.author|default:"Brak" }} |
+        Data: {{ post.publication_date|date:"Y-m-d H:i" }} |
+        Kategoria: {{ post.category|default:"Brak" }}
+      </p>
+      <p>{{ post.content|truncatechars:220 }}</p>
+    </article>
+  {% empty %}
+    <p>Brak postów.</p>
+  {% endfor %}
+{% endblock %}
