@@ -1,0 +1,15 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Blog - Strona glowna{% endblock %}
+
+{% block content %}
+  <div class="home-layout">
+    {% include "blog/partials/_new_posts.html" %}
+    <aside class="home-sidebar">
+      {% include "blog/partials/_authors.html" %}
+      {% include "ogloszenia/partials/_announcements.html" %}
+    </aside>
+  </div>
+
+
+{% endblock %}

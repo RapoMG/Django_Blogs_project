@@ -1,0 +1,71 @@
+﻿{% load static %}
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Blog{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'mojprojekt/css/home.css' %}?v=20260307">
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero__inner">
+      <h1>{% block hero_title %}Blogowisko{% endblock %}</h1>
+      <p>{% block hero_subtitle %}Aktualnosci, artykuly i spolecznosc autorow.{% endblock %}</p>
+      {% block search %}
+      <form class="search" method="get" action="{% url 'blog:search' %}" role="search">
+        <label for="search-input" class="sr-only">Szukaj wpisow</label>
+        <input id="search-input" name="q" type="search" placeholder="Szukaj wpisow, tematow..." value="{{ query }}">
+        <!-- value="{{ query }}" keeps searched fraze in the field -->
+        <button type="submit">Szukaj</button>
+      </form>
+      {% endblock %}
+      <div class="quick-menu">
+        <a class="dropdown__toggle dropdown__toggle--link" href="{% url 'home' %}">Strona główna</a>
+        <details class="dropdown">
+          <summary class="dropdown__toggle">Blogi</summary>
+          <ul class="dropdown__list">
+            <li><a href="{% url 'blog:last-post' %}">Najnowsze posty</a></li>
+            <li><a href="#">_Autorzy_ </a></li>
+            <li><a href="#">_Wszystkie posty_</a></li>
+            <li><a href="#">_Kategorie_</a></li>
+          </ul>
+        </details>
+        <details class="dropdown">
+          <summary class="dropdown__toggle">Ogłoszenia</summary>
+          <ul class="dropdown__list">
+            <li><a href="{% url 'blog:last-post' %}">_Najnowsze ogłoszenia_</a></li>
+            <li><a href="#">_Wszystkie ogłoszenia_</a></li>
+          </ul>
+        </details>
+        <details class="dropdown">
+          <summary class="dropdown__toggle">Konto</summary>
+          <ul class="dropdown__list">
+            {% if request.user.is_authenticated %}
+              <li><a href="{% url 'users:profile' request.user.username %}">Moj profil</a></li>
+              <li><a href="{% url 'users:profile_edit' %}">Edytuj profil</a></li>
+              <li><a href="{% url 'users:logout' %}?next={{ request.path }}">Wyloguj</a></li>
+            {% else %}
+              <li><a href="{% url 'users:login' %}?next={{ request.path }}">Logowanie</a></li>
+              <li><a href="{% url 'users:register' %}?next={{ request.path }}">Rejestracja</a></li>
+            {% endif %}
+          </ul>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sections" aria-label="Sekcje bloga">
+    <div class="container">
+      <h2>Sekcje</h2>
+      {% block sections %}
+        {% include "blog/partials/_sections.html" %}
+      {% endblock %}
+    </div>
+  </nav>
+
+  <main class="container grid">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
